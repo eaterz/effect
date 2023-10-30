@@ -1,23 +1,19 @@
 import { useState } from "react";
+
 function ToDo(props) {
-  const [check, setCompl] = useState(props.check);
+  const [check, setCheck] = useState(props.completed);
 
-  function handleCheck(niga) {
-    setCompl(niga.target.value);
+  function handleCheck(event) {
+    setCheck(event.target.checked);
   }
-
   return (
     <>
-      <p>{props.todo.title}</p>
-      <p>userId:{props.todo.userId}</p>
-      <p>ToDoId:{props.todo.id}</p>
-      <input
-        id="numberInput"
-        type="checkbox"
-        checked={check}
-        onChange={handleCheck}
-      />
+      <p>{props.title}</p>
+      <p>userID: {props.userId}</p>
+      <p>toDoId: {props.id}</p>.
+      <input type="checkbox" checked={check} onChange={handleCheck} />
     </>
   );
 }
+
 export default ToDo;
