@@ -1,20 +1,49 @@
 import React from "react";
-import Post from "./Post";
+import Posts from "./Posts";
 import { useEffect, useState } from "react";
 
 export default function PostList() {
-  const [post, setPost] = useState({});
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [name, setName] = useState([]);
   useEffect(() => {
     async function getData() {
       const respons = await fetch("https://jsonplaceholder.typicode.com/posts");
       const data = await respons.json();
       console.log(data);
-      setPost(data);
+      setPosts(data);
       setLoading(false);
     }
     getData();
   }, []);
 
-  return <div>{loading ? <p>ladejas.. </p> : <Post {...post} />}</div>;
+  useEffect(() => {
+    async function getData2() {
+      const respons = await fetch("https://jsonplaceholder.typicode.com/users");
+      const data = await respons.json();
+      console.log(data);
+      setName(data);
+      setLoading(false);
+    }
+    getData2();
+  }, []);
+  //////
+  const list = posts.map((post) => {
+    return (
+      <>
+        {loading == true ? (
+          <p>ladejas</p>
+        ) : (
+          <Posts
+            title={post.title}
+            userId={post.userId}
+            id={post.id}
+            body={post.body}
+          />
+        )}
+      </>
+    );
+  });
+
+  return <div>{list}</div>;
 }

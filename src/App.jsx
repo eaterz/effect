@@ -7,7 +7,7 @@ import PostList from "./PostList";
 function App() {
   const [todo, setTodo] = useState({});
   const [loading, setLoading] = useState(true);
-  const [eff, setEff] = useState({});
+
   //////////////////////////////////////////////////
   useEffect(() => {
     console.log("hello");
