@@ -28,7 +28,13 @@ export default function PostList() {
     getData2();
   }, []);
   //////
+
   const list = posts.map((post) => {
+    const userName = name.map((user) => {
+      if (post.userId == user.userId) {
+        return user.userId;
+      }
+    });
     return (
       <>
         {loading == true ? (
@@ -36,7 +42,7 @@ export default function PostList() {
         ) : (
           <Posts
             title={post.title}
-            userId={post.userId}
+            userId={userName}
             id={post.id}
             body={post.body}
           />
